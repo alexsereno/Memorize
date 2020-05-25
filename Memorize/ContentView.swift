@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var gameViewModel: EmojiMemoryGame
     //curly braces mean the internal value is computed
     var body: some View {
         //there is an implicit "return" in all one line {}
@@ -17,13 +19,14 @@ struct ContentView: View {
         //HStach - stacks horizontally, has default spacing between stacks
         HStack {
             //foreach takes an iteror - ideally a list, and creates views for each lul
-            ForEach(0..<4) { _ in
-                CardView(isFaceUp: false)
+            ForEach(gameViewModel.cards) { card in
+                CardView(card: card).onTapGesture{
+                    self.gameViewModel.choose(card: card)}
             }
         }
             //applying a function to the Z stack applies to all contained views
             //you can ovverride inherited functions contained views
-            .foregroundColor(Color.orange)
+            .foregroundColor(Color.pink)
             .padding()
             .font(Font.largeTitle)
     }
@@ -32,15 +35,15 @@ struct ContentView: View {
 
 
 struct CardView: View {
-    var isFaceUp: Bool
+    var card:MemoryGame<String>.Card
     
     var body: some View {
         ZStack {
-            if isFaceUp {
+            if card.isFaceUp {
                 RoundedRectangle(cornerRadius: 10).fill(Color.white)
                 //inherting color from Z-stack
                 RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 3)
-                Text("👻")
+                Text(card.content)
             } else {
                 RoundedRectangle(cornerRadius: 10).fill()
             }
@@ -53,6 +56,6 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(gameViewModel: EmojiMemoryGame())
     }
 }
