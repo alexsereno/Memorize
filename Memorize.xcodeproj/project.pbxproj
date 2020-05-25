@@ -294,7 +294,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexsereno.Memorize;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Memorize;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -314,7 +314,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexsereno.Memorize;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Memorize;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
