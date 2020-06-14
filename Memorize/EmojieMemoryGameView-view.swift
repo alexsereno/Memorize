@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
     
-    var gameViewModel: EmojiMemoryGame
+    @ObservedObject var gameViewModel: EmojiMemoryGame
     //curly braces mean the internal value is computed
     var body: some View {
         //there is an implicit "return" in all one line {}
@@ -23,12 +23,14 @@ struct ContentView: View {
                 CardView(card: card).onTapGesture{
                     self.gameViewModel.choose(card: card)}
             }
+            .aspectRatio(2/3, contentMode: .fit)
+
         }
             //applying a function to the Z stack applies to all contained views
-            //you can ovverride inherited functions contained views
+        //you can ovverride inherited functions contained views
             .foregroundColor(Color.pink)
             .padding()
-            .font(Font.largeTitle)
+            .font(gameViewModel.cards.count < 10 ? Font.largeTitle : Font.body)
     }
 }
 
@@ -56,6 +58,6 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(gameViewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(gameViewModel: EmojiMemoryGame())
     }
 }
